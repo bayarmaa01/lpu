@@ -35,7 +35,7 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}  # Needed to get PR information, if any
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
   deploy:
-    needs: sonarcloud
+    needs: test
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
@@ -53,3 +53,20 @@ jobs:
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v4
+test:
+    needs: sonarcloud
+    runs-on: ubuntu-latest  # Runs on Ubuntu environment
+
+    # Steps to execute within the job
+    steps:
+      # Step to checkout the repository code
+      - name: Checkout Repository
+        uses: actions/checkout@v2
+
+      # Step to set up Python environment
+      - name: Set up Python
+        uses: actions/setup-python@v2
+        with:
+          python-version: "3.12"  # Version of Python to set up
+
+      # Step to install Chrome WebDriver for Selenium
