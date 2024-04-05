@@ -34,7 +34,25 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}  # Needed to get PR information, if any
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
-          run: |
+  test:
+    needs: sonarcloud
+    runs-on: ubuntu-latest  # Runs on Ubuntu environment
+
+    # Steps to execute within the job
+    steps:
+      # Step to checkout the repository code
+      - name: Checkout Repository
+        uses: actions/checkout@v2
+
+      # Step to set up Python environment
+      - name: Set up Python
+        uses: actions/setup-python@v2
+        with:
+          python-version: "3.12"  # Version of Python to set up
+
+      # Step to install Chrome WebDriver for Selenium
+      - name: Install Chrome WebDriver
+        run: |
           LATEST=$(wget -q -O - https://googlechromelabs.github.io/chrome-for-testing/LATEST_RELEASE_STABLE)
           wget https://storage.googleapis.com/chrome-for-testing-public/$LATEST/linux64/chromedriver-linux64.zip
           unzip chromedriver-linux64.zip
@@ -58,7 +76,8 @@ jobs:
           git config --global user.name "GitHub Actions"
           git add screenshot_*.png
           git commit -m "Add screenshot taken during Selenium test"
-          git push
+          git push
+  
   deploy:
     needs: test
     environment:
