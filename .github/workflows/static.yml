@@ -77,6 +77,7 @@ jobs:
           git add screenshot_*.png
           git commit -m "Add screenshot taken during Selenium test"
           git push
+          
   deploy:
     needs: test
     environment:
