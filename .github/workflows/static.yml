@@ -64,6 +64,10 @@ jobs:
       - name: Install Selenium
         run: pip install selenium
 
+      # Step to execute Selenium tests
+      - name: Run Selenium tests
+        run: python selenium_test.py
+
       # Step to save screenshots if tests succeed
       - name: Save screenshot to repository
         if: ${{ success() }}  # Condition to run only if tests succeed
@@ -73,9 +77,6 @@ jobs:
           git add screenshot_*.png
           git commit -m "Add screenshot taken during Selenium test"
           git push
-      # Step to execute Selenium tests
-      - name: Run Selenium tests
-        run: python static.py
           
   deploy:
     needs: test
