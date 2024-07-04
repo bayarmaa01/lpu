@@ -1,38 +1,89 @@
-body {
-    font-family: Arial, sans-serif;
+/* Resetting default margin and padding */
+* {
     margin: 0;
     padding: 0;
-    background-color: #f4f4f4;
+    box-sizing: border-box;
 }
 
+/* Basic styling for header */
 header {
-    background-color: #1E6C93;
-    color: #fff;
-    padding: 10px;
+    background-color: #007bff; /* Blue background color */
+    color: #fff; /* White text color */
     text-align: center;
+    padding: 10px 0;
 }
 
+header h1 {
+    font-size: 2rem;
+    margin-bottom: 5px;
+}
+
+header p {
+    font-size: 1.2rem;
+}
+
+/* Basic styling for navigation */
 nav {
-    background-color: #eee;
-    padding: 10px;
+    background-color: #f8f9fa; /* Light gray background color */
+    padding: 10px 0;
     text-align: center;
 }
 
+nav a {
+    text-decoration: none;
+    color: #333; /* Dark gray text color */
+    font-weight: bold;
+    padding: 0 10px;
+}
+
+nav a:hover {
+    color: #007bff; /* Blue color on hover */
+}
+
+/* Styling for main sections */
 section {
     padding: 20px;
+    margin: 20px 0;
 }
 
+section h2 {
+    font-size: 1.8rem;
+    margin-bottom: 10px;
+}
+
+section p {
+    font-size: 1.1rem;
+    line-height: 1.6;
+}
+
+/* Styling for footer */
 footer {
-    background-color: #1E6C93;
+    background-color: #007bff;
     color: #fff;
     text-align: center;
-    padding: 10px;
-    position: fixed;
+    padding: 10px 0;
+    position: absolute;
     bottom: 0;
     width: 100%;
 }
 
-img {
-    max-width: 100%;
-    height: auto;
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    header h1 {
+        font-size: 1.5rem;
+    }
+
+    header p {
+        font-size: 1rem;
+    }
+
+    nav {
+        display: block;
+    }
+
+    nav a {
+        display: block;
+        padding: 10px 0;
+    }
 }
+
